@@ -6,7 +6,7 @@ Deutschsprachige Lernwebsite zur Analysis-Prüfung mit vorgerenderten LaTeX-Form
 
 ## Bearbeiten
 
-- `##` Kapitel, `###` Abschnitt, `$...$` Inline-Mathematik, `$$...$$` Formelzeile, `!$$...$$` hervorgehobenes Ergebnis, `@source` Quellenhinweis. `@formulas` und `@endformulas` begrenzen die allgemeine Formelsammlung eines Kapitels; `@rule` kennzeichnet einzelne Regeln.
+- `##` Kapitel, `###` Abschnitt, `$...$` Inline-Mathematik, `$$...$$` Formelzeile, `!$$...$$` hervorgehobenes Ergebnis, `@source` Quellenhinweis. `@formulas` und `@endformulas` begrenzen die allgemeine Formelsammlung eines Kapitels; `@rule` kennzeichnet einzelne Regeln. `@visual telescope`, `@visual quotient` und `@visual taylor-pattern` erzeugen farblich codierte Rechendiagramme.
 - `npm install` und `npm run build` ausführen. Änderungen an `lernskript.md` sowie beide erzeugten HTML-Seiten gemeinsam committen.
 - `template.html` ist das Layout; `build.cjs` erzeugt die beiden vollständigen eigenständigen HTML-Seiten mit MathJax SVG. Jede erzeugte Datei funktioniert ohne externe Bibliotheken.
 

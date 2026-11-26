@@ -12,6 +12,32 @@ const read=p=>fs.readFileSync(path.join(__dirname,p),'utf8');
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let errors=[],count=0;
 function math(tex,display=false){count++;const html=adaptor.outerHTML(doc.convert(tex,{display}));if(/data-mjx-error|data-mml-node="merror"/.test(html))errors.push(tex);return html;}
+function studyVisual(name){
+const frac=(d,sign="",cls="")=>`<span class="fraction-term ${cls}"><span class="term-sign">${sign}</span><span class="stack-fraction"><span>1</span><span>${d}</span></span></span>`;
+const key=(cls,label)=>`<span class="visual-key"><span class="key-dot ${cls}"></span>${label}</span>`;
+if(name==="telescope"){
+let rows="";
+for(let k=0;k<=4;k++){
+let cells="";
+for(let d=3;d<=9;d++){
+const positive=d===k+3,negative=d===k+5;
+const cls=d<=4?"keep":d>=8?"tail":"pair-"+d;
+cells+=`<td>${positive||negative?frac(d,positive?"+":"−",cls+(d>=5&&d<=7?" cancelled":"")):""}</td>`;
+}
+rows+=`<tr><th scope="row"><i>k</i> = ${k}</th>${cells}</tr>`;
+}
+return `<div class="study-visual telescope-visual"><div class="visual-heading">Welche Brüche heben sich auf?</div><p class="visual-subtitle">Gleiche Farbe und gleicher Nenner, entgegengesetzte Vorzeichen: Die durchgestrichenen Paare ergeben null.</p><div class="visual-scroll"><table class="telescope-table" aria-label="Teleskopsumme: Paare mit Nenner 5, 6 und 7 heben sich auf. Die Anfangsbrüche 1/3 und 1/4 sowie die letzten negativen Brüche 1/8 und 1/9 bleiben in dieser endlichen Teilsumme."><thead><tr><th scope="col">Glied</th>${[3,4,5,6,7,8,9].map(d=>`<th scope="col">${d}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div><div class="visual-legend">${key("keep","Bleibt am Anfang")}${key("pair-5","Paar 5")}${key("pair-6","Paar 6")}${key("pair-7","Paar 7")}${key("tail","Endbrüche")}</div><div class="pair-proof">${[5,6,7].map(d=>`<div class="pair-check pair-${d}">${frac(d,"−")} <span>+</span> ${frac(d)} <span>= 0</span></div>`).join("")}</div><div class="visual-conclusion"><span>Nach dem Kürzen (bis k = 4):</span><span class="visual-math"><span class="keep">${frac(3,"+")} ${frac(4,"+")}</span> <span class="tail">${frac(8,"−")} ${frac(9,"−")}</span></span></div><p class="visual-subtitle">Der äußere Faktor 1/2 gilt für die ganze Summe. Die orangefarbenen Endbrüche bleiben bei dieser Teilsumme stehen, verschwinden aber für N → ∞.</p></div>`;
+}
+if(name==="quotient"){
+return `<div class="study-visual quotient-visual"><div class="visual-heading">Gleiche Faktoren erkennen und kürzen</div><p class="visual-subtitle">Die violetten Faktoren sind identisch. Die blauen Potenzen werden mit der Potenzregel vereinfacht.</p><div class="visual-scroll"><div class="visual-math quotient-equation" aria-label="(k+2)(k+1) q hoch k+1 geteilt durch (k+1)k q hoch k ist gleich (k+2)/k mal q"><span class="stack-fraction wide-fraction"><span><span class="keep">(k+2)</span> <span class="pair-6 cancelled">(k+1)</span> <span class="pair-5">q<sup>k+1</sup></span></span><span><span class="pair-6 cancelled">(k+1)</span> <span class="keep">k</span> <span class="pair-5">q<sup>k</sup></span></span></span><span>=</span><span class="stack-fraction keep"><span>k+2</span><span>k</span></span><span>·</span><span class="pair-5">q</span></div></div><div class="visual-legend">${key("pair-6","Identischer Faktor: kürzen")}${key("pair-5","Potenzregel: q bleibt")}${key("keep","Übrige Faktoren")}</div></div>`;
+}
+if(name==="taylor-pattern"){
+const row=(n,p1,p2,den,cls)=>`<tr><th scope="row">${n}</th><td><span class="pattern-group ${cls}"><i>x</i><sup>${p1}</sup> + <i>x</i><sup>${p2}</sup></span></td><td><span class="pattern-group ${cls}">9<sup>${den}</sup></span></td></tr>`;
+return `<div class="study-visual"><div class="visual-heading">Das Muster in Zweiergruppen sehen</div><p class="visual-subtitle">Eine Farbe verbindet jeweils die beiden Potenzen mit ihrem gemeinsamen Nenner.</p><div class="visual-scroll"><table class="pattern-table" aria-label="Taylor-Muster: Zweiergruppen x hoch 2n und x hoch 2n plus 1, Nenner 9 hoch n plus 1"><thead><tr><th scope="col">n</th><th scope="col">Zähler</th><th scope="col">Nenner</th></tr></thead><tbody>${row(0,0,1,1,"pair-5")}${row(1,2,3,2,"pair-6")}${row(2,4,5,3,"pair-7")}${row(3,6,7,4,"tail")}${row("n","2n","2n+1","n+1","keep general-pattern")}</tbody></table></div><p class="visual-subtitle">Die erste Potenz ist immer 2n, die zweite ist 2n+1. Der Nenner beginnt bei 9¹ und wächst zu 9ⁿ⁺¹. Das Minuszeichen steht vor der gesamten Summe.</p></div>`;
+}
+throw Error("Unknown study visual: "+name);
+}
+function colorNativeMath(html){return html.replace(/<mi>(q|a|A|B)<\/mi>/g,(_,v)=>`<mi class="math-param-${v}">${v}</mi>`)}
 function renderPage(raw,tpl,math){
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const inline=s=>s.split(/(\$[^$]+\$)/g).map(y=>y.startsWith('$')&&y.endsWith('$')?math(y.slice(1,-1)):esc(y)).join('');
@@ -25,6 +51,7 @@ if(line==='@endformulas'){if(!panel)throw Error('Unmatched panel');panel=false;h
 if(line.startsWith('@rule ')){html+='<h4>'+inline(line.slice(6))+'</h4>';continue;}
 if(line.startsWith('### ')){html+='<h3 id="kapitel-'+n+'-schritt-'+ ++sub+'">'+esc(line.slice(4))+'</h3>';continue;}
 if(line.startsWith('#### ')){html+='<h4>'+esc(line.slice(5))+'</h4>';continue;}
+if(line.startsWith('@visual ')){html+=studyVisual(line.slice(8));continue;}
 if(line.startsWith('@source ')){html+='<p class="source">'+esc(line.slice(8))+'</p>';continue;}
 if(/^!?\$\$/.test(line)){if(!line.endsWith('$$'))throw Error('Math delimiter');const result=line.startsWith('!');html+='<div class="equation'+(result?' result':'')+'">'+(result?'<span class="result-label">ERGEBNIS</span>':'')+math(line.slice(result?3:2,-2),true)+'</div>';continue;}
 if(line.trim())html+='<p'+(!section?' class="study-intro"':'')+'>'+inline(line)+'</p>';
@@ -54,7 +81,7 @@ const content='<h1>Formelsammlung</h1><p class="subtitle">Alle allgemeinen Forme
 return tpl.replace("Analysis – Mein Lernskript</title>","Formelsammlung – Analysis</title>").replace("<body>","<body data-view=\"formulas\">").replace('<a class="formula-link" href="./formelsammlung.html">','<a class="formula-link" href="./formelsammlung.html" aria-current="page">').replace('{{NAV}}',()=>nav.replace(/href="#kapitel-/g,'href="./index.html#kapitel-')).replace('{{CONTENT}}',()=>content);
 }
 const template=read('template.html');
-const page=renderPage(read('lernskript.md'),template,math);
+const page=colorNativeMath(renderPage(read('lernskript.md'),template,math));
 const formulaLibrary=renderFormulaLibrary(page,template);
 if(errors.length){console.error('Math errors:',errors);process.exit(1)}
 fs.writeFileSync(path.join(__dirname,'index.html'),page);

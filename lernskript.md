@@ -60,7 +60,7 @@ Jetzt setzen wir $A$ und $B$ in die Partialbruchzerlegung ein und klammern $1/2$
 $$\frac{1}{(k+3)(k+5)}=\frac12\left(\frac1{k+3}-\frac1{k+5}\right)$$
 ### 2. Teleskop: Die ersten Brüche finden, die übrig bleiben
 Wir schreiben die ersten Glieder aus, um zu sehen, welche Brüche sich gegenseitig aufheben. Das funktioniert wie eine Treppe: Ein negativer Bruch taucht weiter unten wieder als positiver Bruch auf.
-$$\begin{array}{r|rrrrrrr}k=0&+\frac13&&-\frac15\\[5pt]k=1&&+\frac14&&-\frac16\\[5pt]k=2&&&+\frac15&&-\frac17\\[5pt]k=3&&&&+\frac16&&-\frac18\\[5pt]k=4&&&&&+\frac17&&-\frac19\end{array}$$
+@visual telescope
 Beispiel: $-\frac15+\frac15=0$; $-\frac16+\frac16=0$; $-\frac17+\frac17=0$. Das Muster setzt sich fort. Der Faktor $\frac12$ steht vor der gesamten Summe.
 Am Anfang bleiben nur $+\frac13$ und $+\frac14$ übrig.
 Wichtig: Am Anfang interessieren uns nur die ersten Brüche, die nicht wegfallen. Sobald wir diese erkannt haben, konzentrieren wir uns ausschließlich auf die letzten Brüche mit $N$.
@@ -111,6 +111,7 @@ Bei $L=1$ den Randfall separat prüfen.
 $$a_k=(k+1)\cdot k\cdot q^k$$
 $$a_{k+1}=(k+2)\cdot(k+1)\cdot q^{k+1}$$
 Wir ersetzen jedes $k$ durch $k+1$, um das nächste Glied zu erhalten. Dann teilen wir das nächste Glied durch das aktuelle Glied und vereinfachen (für $q\neq0$ und $k\ge1$).
+@visual quotient
 $$\begin{aligned}L&=\lim_{k\to\infty}\left|\frac{(k+2)(k+1)q^{k+1}}{(k+1)kq^k}\right|\\[6pt]&=\lim_{k\to\infty}\left|\frac{k+2}{k}\cdot q\right|\\[6pt]&=\lim_{k\to\infty}\left|\left(1+\frac2k\right)\cdot q\right|\end{aligned}$$
 $2/k$ geht gegen null, weil $k$ immer größer wird. $q$ bleibt konstant, solange wir den Grenzwert berechnen.
 !$$L=|q|$$
@@ -248,7 +249,7 @@ Jetzt multipliziere ich jedes Glied mit $-1/9$.
 !$$h(x)=-\frac19-\frac{x}{9}-\frac{x^2}{81}-\frac{x^3}{81}-\frac{x^4}{729}-\frac{x^5}{729}-\cdots$$
 ### 7. Muster erkennen und als Summe schreiben
 Die Exponenten im Zähler steigen um eins. Jeweils zwei aufeinanderfolgende Potenzen haben denselben Nenner. Ich gruppiere die Glieder paarweise und erkenne die allgemeine Form.
-$$\begin{array}{c|c|c} n&\text{Zähler}&\text{Nenner}\\\hline0&x^0+x^1&9^1\\1&x^2+x^3&9^2\\2&x^4+x^5&9^3\\3&x^6+x^7&9^4\\\hline n&x^{2n}+x^{2n+1}&9^{n+1}\end{array}$$
+@visual taylor-pattern
 $$\text{Allgemein:}\quad\frac{x^{2n}+x^{2n+1}}{9^{n+1}}$$
 !$$h(x)=-\sum_{n=0}^{\infty}\frac{x^{2n}+x^{2n+1}}{9^{n+1}}$$
 ### 8. Konvergenzradius berechnen

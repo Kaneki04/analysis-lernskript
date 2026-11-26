@@ -32,7 +32,31 @@ if(line.trim())html+='<p'+(!section?' class="study-intro"':'')+'>'+inline(line)+
 if(panel)throw Error('Unclosed panel');if(section)html+='</section>';html+='<p class="footer">Analysis · Lernskript zur Prüfungsvorbereitung</p>';
 return tpl.replace('{{NAV}}',()=>nav.join('')).replace('{{CONTENT}}',()=>html);
 }
-const page=renderPage(read('lernskript.md'),read('template.html'),math);
+function renderFormulaLibrary(page,tpl){
+const nav=page.match(/<nav aria-label="Kapitel">([\s\S]*?)<\/nav>/)?.[1];
+if(!nav)throw Error("Chapter navigation not found");
+const chapters=new Map([...page.matchAll(/<section id="kapitel-(\d+)" class="chapter"><header class="chapter-head"><span class="eyebrow">[^<]*<\/span><h2>([^<]*)<\/h2>/g)].map(m=>[m[1],m[2]]));
+const panels=[...page.matchAll(/<section class="formula-panel" aria-labelledby="formeln-(\d+)">([\s\S]*?)<\/section>/g)];
+if(!panels.length||panels.length!==chapters.size||new Set(panels.map(m=>m[1])).size!==panels.length)throw Error("Missing or duplicate general-formula panels");
+let sections="",topics="",ruleCount=0,formulaCount=0;
+for(const p of panels){
+const id=p[1],title=chapters.get(id);
+if(!title)throw Error("Formula panel without chapter");
+const body=p[2].replace(/^<h3 id="formeln-\d+">Allgemeine Formeln<\/h3><p class="panel-caption">[^<]*<\/p>/,"");
+const rules=(body.match(/<h4>/g)||[]).length;
+const equations=(body.match(/class="equation(?: result)?"/g)||[]).length;
+if(!rules||!equations)throw Error("Empty formula panel: "+id);
+ruleCount+=rules;formulaCount+=equations;
+topics+='<a href="#formeln-'+id+'">'+title.replace(/^Aufgabe /,"")+'</a>';
+sections+='<section id="formeln-'+id+'" class="library-chapter" aria-labelledby="formelthema-'+id+'"><h2 id="formelthema-'+id+'">'+title+'</h2><a class="exercise-link" href="./index.html#kapitel-'+id+'">Zur vollständigen Aufgabe <span aria-hidden="true">↗</span></a><div class="formula-panel">'+body+'</div></section>';
+}
+const content='<h1>Formelsammlung</h1><p class="subtitle">Alle allgemeinen Formeln auf einen Blick</p><p class="formula-library-intro">Die wichtigsten Rechenregeln und Voraussetzungen aus allen bisher bearbeiteten Aufgaben. Nur allgemeine Formeln, ohne die ausführlichen Musterlösungen.</p><div class="library-meta"><span>'+panels.length+' Themenbereiche · '+ruleCount+' Rechenregeln · '+formulaCount+' Formelblöcke</span><a href="./index.html">Zum Lernskript</a></div><div class="library-topics" aria-label="Formelthemen">'+topics+'</div>'+sections+'<p class="footer">Analysis · Formelsammlung</p>';
+return tpl.replace("Analysis – Mein Lernskript</title>","Formelsammlung – Analysis</title>").replace("<body>","<body data-view=\"formulas\">").replace('<a class="formula-link" href="./formelsammlung.html">','<a class="formula-link" href="./formelsammlung.html" aria-current="page">').replace('{{NAV}}',()=>nav.replace(/href="#kapitel-/g,'href="./index.html#kapitel-')).replace('{{CONTENT}}',()=>content);
+}
+const template=read('template.html');
+const page=renderPage(read('lernskript.md'),template,math);
+const formulaLibrary=renderFormulaLibrary(page,template);
 if(errors.length){console.error('Math errors:',errors);process.exit(1)}
 fs.writeFileSync(path.join(__dirname,'index.html'),page);
+fs.writeFileSync(path.join(__dirname,'formelsammlung.html'),formulaLibrary);
 console.log('Rendered',count,'formulas; no MathJax errors.');

@@ -320,30 +320,30 @@ $$\frac25+24\cdot\frac23+17\cdot2-2A-C\cdot\frac23=0$$
 $$\frac25+16+34-2A-\frac{2C}{3}=0$$
 Die Konstanten 17 und −A sind Terme mit t⁰. Deshalb multipliziere ich beide mit 2 aus der Integraltabelle. Hier wird integriert, nicht abgeleitet.
 $$\frac{252}{5}=2A+\frac{2C}{3}$$
-!$$A+\frac C3=\frac{126}{5}\quad\text{(I)}$$
+!$$A+\frac{C}{3}=\frac{126}{5}\quad\text{(I)}$$
 ### 7. Zweite Gleichung: j = 1, mit t multiplizieren
 @visual least-squares-1
 $$\int_{-1}^{1}(8t^4+32t^2-Bt^2-Dt^4)\,dt=0$$
 $$8\cdot\frac25+32\cdot\frac23-B\cdot\frac23-D\cdot\frac25=0$$
 $$\frac{16}{5}+\frac{64}{3}=\frac{2B}{3}+\frac{2D}{5}$$
-!$$\frac B3+\frac D5=\frac{184}{15}\quad\text{(II)}$$
+!$$\frac{B}{3}+\frac{D}{5}=\frac{184}{15}\quad\text{(II)}$$
 ### 8. Dritte Gleichung: j = 2, mit t² multiplizieren
 @visual least-squares-2
 $$\int_{-1}^{1}(t^6+24t^4+17t^2-At^2-Ct^4)\,dt=0$$
 $$\frac27+24\cdot\frac25+17\cdot\frac23-A\cdot\frac23-C\cdot\frac25=0$$
 $$\frac27+\frac{48}{5}+\frac{34}{3}=\frac{2A}{3}+\frac{2C}{5}$$
-!$$\frac A3+\frac C5=\frac{1114}{105}\quad\text{(III)}$$
+!$$\frac{A}{3}+\frac{C}{5}=\frac{1114}{105}\quad\text{(III)}$$
 ### 9. Vierte Gleichung: j = 3, mit t³ multiplizieren
 @visual least-squares-3
 $$\int_{-1}^{1}(8t^6+32t^4-Bt^4-Dt^6)\,dt=0$$
 $$8\cdot\frac27+32\cdot\frac25-B\cdot\frac25-D\cdot\frac27=0$$
 $$\frac{16}{7}+\frac{64}{5}=\frac{2B}{5}+\frac{2D}{7}$$
-!$$\frac B5+\frac D7=\frac{264}{35}\quad\text{(IV)}$$
+!$$\frac{B}{5}+\frac{D}{7}=\frac{264}{35}\quad\text{(IV)}$$
 ### 10. Zwei Gleichungssysteme lösen
 Gleichungen I und III enthalten nur A und C. Gleichungen II und IV enthalten nur B und D. Dadurch muss ich nicht ein großes 4×4-System lösen, sondern zwei kleine 2×2-Systeme.
 #### A und C bestimmen – Gleichungen I und III
-$$A+\frac C3=\frac{126}{5}$$
-$$\frac A3+\frac C5=\frac{1114}{105}$$
+$$A+\frac{C}{3}=\frac{126}{5}$$
+$$\frac{A}{3}+\frac{C}{5}=\frac{1114}{105}$$
 Ich multipliziere die erste Gleichung mit 15 und die zweite mit 105, damit keine Brüche mehr vorhanden sind.
 $$15A+5C=378$$
 $$35A+21C=1114$$
@@ -357,8 +357,8 @@ C in die ursprüngliche Gleichung I einsetzen:
 $$A=\frac{126}{5}-\frac{174}{21}$$
 !$$A=\frac{592}{35}$$
 #### B und D bestimmen – Gleichungen II und IV
-$$\frac B3+\frac D5=\frac{184}{15}$$
-$$\frac B5+\frac D7=\frac{264}{35}$$
+$$\frac{B}{3}+\frac{D}{5}=\frac{184}{15}$$
+$$\frac{B}{5}+\frac{D}{7}=\frac{264}{35}$$
 Erste Gleichung mit 15, zweite mit 35 multiplizieren.
 $$5B+3D=184$$
 $$7B+5D=264$$
@@ -389,6 +389,6 @@ $$x^0:\quad\frac{592}{35}+\frac{696}{7}-128=-\frac{408}{35}$$
 !$$q(x)=8x^3-\frac{162}{7}x^2+\frac{200}{7}x-\frac{408}{35}$$
 ### Mein Schema für die Prüfung
 Mittelpunkt finden → t einsetzen → P(t) ausmultiplizieren → Q(t) aufstellen → Integraltabelle → R(t)=P(t)−Q(t) → nacheinander mit 1, t, t², t³ multiplizieren → ungerade Potenzen streichen → Tabellenwerte einsetzen → vier Gleichungen → zwei 2×2-Systeme lösen → A, B, C, D einsetzen → zurück zu x wechseln.
-### Persönlicher Übungsbedarf – Aufgabe 5
+### Vorgeschlagene Übungsschwerpunkte – Aufgabe 5
 Binomische Potenzen ausmultiplizieren, Exponenten beim Multiplizieren addieren, ungerade Potenzen sicher erkennen, Integrale und Brüche vereinfachen, lineare Gleichungssysteme lösen und die Rücksubstitution durchführen.
 @source Grundlage: persönliche handschriftliche Lernnotizen zu Aufgabe 5 und analysis(3).pdf, Seiten 22–27. Rechenweg und Ergebnisse abgeglichen; Erklärung zur höchsten Potenz und zur Integration von Konstanten präzisiert.

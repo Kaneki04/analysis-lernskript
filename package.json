@@ -1,0 +1,11 @@
+{
+  "name": "analysis-lernskript",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.cjs"
+  },
+  "dependencies": {
+    "mathjax-full": "3.2.2"
+  }
+}

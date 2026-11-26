@@ -6,7 +6,7 @@ Deutschsprachige Lernwebsite zur Analysis-Prüfung mit vorgerenderten LaTeX-Form
 
 ## Bearbeiten
 
-- `##` Kapitel, `###` Abschnitt, `$...$` Inline-Mathematik, `$$...$$` Formelzeile, `!$$...$$` hervorgehobenes Ergebnis, `@source` Quellenhinweis.
+- `##` Kapitel, `###` Abschnitt, `$...$` Inline-Mathematik, `$$...$$` Formelzeile, `!$$...$$` hervorgehobenes Ergebnis, `@source` Quellenhinweis. `@formulas` und `@endformulas` begrenzen die allgemeine Formelsammlung eines Kapitels; `@rule` kennzeichnet einzelne Regeln.
 - `npm install` und `npm run build` ausführen. Änderungen an `lernskript.md` und `index.html` gemeinsam committen.
 - `template.html` ist das Layout; `build.cjs` erzeugt die vollständige eigenständige HTML-Seite mit MathJax SVG. Die erzeugte Datei funktioniert ohne externe Bibliotheken.
 

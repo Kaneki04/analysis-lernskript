@@ -301,12 +301,14 @@ $${(t+2)}^4=t^4+4\cdot2t^3+6\cdot4t^2+4\cdot8t+16$$
 Das gesuchte Polynom schreibe ich jetzt mit t und den neuen unbekannten Koeffizienten A, B, C, D.
 $$Q(t)=A+Bt+Ct^2+Dt^3$$
 ### 4. Integraltabelle erstellen
-Ich berechne die Tabelle einmal und benutze sie danach für alle vier Gleichungen.
-$$\int\limits_{-1}^{1}t^2\,dt=[\frac{t^3}{3}]_{-1}^{1}=\frac{1}{3}-(-\frac{1}{3})=\frac{2}{3}$$
-$$\int\limits_{-1}^{1}t\,dt=[\frac{t^2}{2}]_{-1}^{1}=\frac{1}{2}-\frac{1}{2}=0$$
-$$\int\limits_{-1}^{1}1\,dt=[t]_{-1}^{1}=1-(-1)=2$$
+#### 1. Woher kommen die Potenzen?
+Unser Polynom P(t) enthält t⁴, t³, t², t¹ und t⁰. Auch Q(t) besteht aus Potenzen von t. Später integrieren wir die Differenz und multiplizieren sie zusätzlich mit 1, t, t² oder t³. Daher brauchen wir die Integrale der einzelnen Potenzen von t.
+Die Koeffizienten bleiben beim Integrieren als Faktoren erhalten. Wir berechnen deshalb jeden Tabellenwert einmal und verwenden ihn für alle vier Gleichungen.
+#### 2. Wie berechne ich die Tabellenwerte?
+Mit der Potenzregel der Integration: Exponent um 1 erhöhen, durch den neuen Exponenten teilen. Danach die obere Grenze 1 einsetzen und den Wert an der unteren Grenze −1 abziehen.
+Wir beginnen bei n = 0, dann n = 1, n = 2 usw. Die Reihenfolge ist nicht vorgeschrieben.
 @visual least-squares-integrals
-Warum bis 7? R(t) hat Grad 4 und wird später mit t³ multipliziert. Dabei entsteht t hoch (4+3)=t⁷. Bei einer Addition von P und Q würden sich die Grade nicht addieren.
+Warum bis 7? R(t) hat Grad 4 und wird später mit t³ multipliziert. Dabei entsteht t⁴ · t³ = t⁷. Die Tabelle ist eine Vorbereitung, keine separate Prüfungsaufgabe.
 ### 5. Fehlerfunktion R(t) bilden
 $$R(t)=P(t)-Q(t)$$
 $$R(t)=t^4+8t^3+24t^2+32t+17-A-Bt-Ct^2-Dt^3$$

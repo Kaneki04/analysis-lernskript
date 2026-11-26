@@ -11,7 +11,16 @@ const doc=mathjax.document('',{InputJax:new TeX({packages:AllPackages}),OutputJa
 const read=p=>fs.readFileSync(path.join(__dirname,p),'utf8');
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let errors=[],count=0;
-function math(tex,display=false){count++;const html=adaptor.outerHTML(doc.convert(tex,{display}));if(/data-mjx-error|data-mml-node="merror"/.test(html))errors.push(tex);return html;}
+function math(tex,display=false){
+count++;
+const node=doc.convert(tex,{display});
+if(display&&/\\int\b/.test(tex)){
+adaptor.setAttribute(adaptor.firstChild(node),'aria-label',tex.replace(/\\int\\limits(?=_)/g,'\\int'));
+}
+const html=adaptor.outerHTML(node);
+if(/data-mjx-error|data-mml-node="merror"/.test(html))errors.push(tex);
+return html;
+}
 function taylorDerivatives(){
 const f=n=>n===0?"<i>f</i>":n<4?"<i>f</i>"+ "′".repeat(n):"<i>f</i><sup>(4)</sup>";
 const rows=Array.from({length:5},(_,n)=>`<tr><td><span class="visual-math">${f(n)}(<i>x</i>) = <i>e</i><sup><i>x</i></sup></span></td><td><span class="visual-math">${f(n)}(<span class="pair-5">0</span>) = <i>e</i><sup class="pair-5">0</sup></span></td><td><strong class="pattern-group keep">1</strong></td></tr>`).join("");

@@ -278,12 +278,12 @@ $$p(x)=x^4+1,\quad x\in[1,3]$$
 $$q(x)=ax^3+bx^2+cx+d$$
 @formulas
 @rule Methode der kleinsten Quadrate
-$$E=\int_a^b[p(x)-q(x)]^2\,dx\to\min$$
-$$\int_a^b[p(x)-q(x)]x^j\,dx=0,\quad j=0,1,2,3$$
+$$E=\int\limits_a^b[p(x)-q(x)]^2\,dx\to\min$$
+$$\int\limits_a^b[p(x)-q(x)]x^j\,dx=0,\quad j=0,1,2,3$$
 Bei einem Polynom dritten Grades entstehen vier Gleichungen für vier unbekannte Koeffizienten. Hier sind a und b in den Integralgrenzen die Grenzen des Intervalls.
 @rule Integral über das symmetrische Intervall
-$$\int_{-1}^{1}t^n\,dt=0\quad\text{für ungerades n}$$
-$$\int_{-1}^{1}t^n\,dt=\frac{2}{n+1}\quad\text{für gerades n}$$
+$$\int\limits_{-1}^{1}t^n\,dt=0\quad\text{für ungerades n}$$
+$$\int\limits_{-1}^{1}t^n\,dt=\frac{2}{n+1}\quad\text{für gerades n}$$
 Ungerade Potenzen verschwinden bei der Integration über dieses Intervall. Gerade Potenzen werden durch den jeweiligen Tabellenwert ersetzt.
 @endformulas
 ### 1. Was ist das Ziel?
@@ -302,20 +302,20 @@ Das gesuchte Polynom schreibe ich jetzt mit t und den neuen unbekannten Koeffizi
 $$Q(t)=A+Bt+Ct^2+Dt^3$$
 ### 4. Integraltabelle erstellen
 Ich berechne die Tabelle einmal und benutze sie danach für alle vier Gleichungen.
-$$\int_{-1}^{1}t^2\,dt=[\frac{t^3}{3}]_{-1}^{1}=\frac13-(-\frac13)=\frac23$$
-$$\int_{-1}^{1}t\,dt=[\frac{t^2}{2}]_{-1}^{1}=\frac12-\frac12=0$$
-$$\int_{-1}^{1}1\,dt=[t]_{-1}^{1}=1-(-1)=2$$
+$$\int\limits_{-1}^{1}t^2\,dt=[\frac{t^3}{3}]_{-1}^{1}=\frac{1}{3}-(-\frac{1}{3})=\frac{2}{3}$$
+$$\int\limits_{-1}^{1}t\,dt=[\frac{t^2}{2}]_{-1}^{1}=\frac{1}{2}-\frac{1}{2}=0$$
+$$\int\limits_{-1}^{1}1\,dt=[t]_{-1}^{1}=1-(-1)=2$$
 @visual least-squares-integrals
 Warum bis 7? R(t) hat Grad 4 und wird später mit t³ multipliziert. Dabei entsteht t hoch (4+3)=t⁷. Bei einer Addition von P und Q würden sich die Grade nicht addieren.
 ### 5. Fehlerfunktion R(t) bilden
 $$R(t)=P(t)-Q(t)$$
 $$R(t)=t^4+8t^3+24t^2+32t+17-A-Bt-Ct^2-Dt^3$$
 Wir wollen die vier unbekannten Koeffizienten finden. Die allgemeine Formel in der neuen Variablen lautet:
-$$\int_{-1}^{1}R(t)t^j\,dt=0,\quad j=0,1,2,3$$
+$$\int\limits_{-1}^{1}R(t)t^j\,dt=0,\quad j=0,1,2,3$$
 Ich nehme immer dieselbe Fehlerfunktion R(t), multipliziere sie nacheinander mit 1, t, t² und t³, streiche erst danach die ungeraden Potenzen und setze die Integraltabelle ein. Die Gleichung muss jeweils null ergeben.
 ### 6. Erste Gleichung: j = 0, mit 1 multiplizieren
 @visual least-squares-0
-$$\int_{-1}^{1}(t^4+24t^2+17-A-Ct^2)\,dt=0$$
+$$\int\limits_{-1}^{1}(t^4+24t^2+17-A-Ct^2)\,dt=0$$
 $$\frac25+24\cdot\frac23+17\cdot2-2A-C\cdot\frac23=0$$
 $$\frac25+16+34-2A-\frac{2C}{3}=0$$
 Die Konstanten 17 und −A sind Terme mit t⁰. Deshalb multipliziere ich beide mit 2 aus der Integraltabelle. Hier wird integriert, nicht abgeleitet.
@@ -323,19 +323,19 @@ $$\frac{252}{5}=2A+\frac{2C}{3}$$
 !$$A+\frac{C}{3}=\frac{126}{5}\quad\text{(I)}$$
 ### 7. Zweite Gleichung: j = 1, mit t multiplizieren
 @visual least-squares-1
-$$\int_{-1}^{1}(8t^4+32t^2-Bt^2-Dt^4)\,dt=0$$
+$$\int\limits_{-1}^{1}(8t^4+32t^2-Bt^2-Dt^4)\,dt=0$$
 $$8\cdot\frac25+32\cdot\frac23-B\cdot\frac23-D\cdot\frac25=0$$
 $$\frac{16}{5}+\frac{64}{3}=\frac{2B}{3}+\frac{2D}{5}$$
 !$$\frac{B}{3}+\frac{D}{5}=\frac{184}{15}\quad\text{(II)}$$
 ### 8. Dritte Gleichung: j = 2, mit t² multiplizieren
 @visual least-squares-2
-$$\int_{-1}^{1}(t^6+24t^4+17t^2-At^2-Ct^4)\,dt=0$$
+$$\int\limits_{-1}^{1}(t^6+24t^4+17t^2-At^2-Ct^4)\,dt=0$$
 $$\frac27+24\cdot\frac25+17\cdot\frac23-A\cdot\frac23-C\cdot\frac25=0$$
 $$\frac27+\frac{48}{5}+\frac{34}{3}=\frac{2A}{3}+\frac{2C}{5}$$
 !$$\frac{A}{3}+\frac{C}{5}=\frac{1114}{105}\quad\text{(III)}$$
 ### 9. Vierte Gleichung: j = 3, mit t³ multiplizieren
 @visual least-squares-3
-$$\int_{-1}^{1}(8t^6+32t^4-Bt^4-Dt^6)\,dt=0$$
+$$\int\limits_{-1}^{1}(8t^6+32t^4-Bt^4-Dt^6)\,dt=0$$
 $$8\cdot\frac27+32\cdot\frac25-B\cdot\frac25-D\cdot\frac27=0$$
 $$\frac{16}{7}+\frac{64}{5}=\frac{2B}{5}+\frac{2D}{7}$$
 !$$\frac{B}{5}+\frac{D}{7}=\frac{264}{35}\quad\text{(IV)}$$

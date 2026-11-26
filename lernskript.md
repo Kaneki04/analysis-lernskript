@@ -8,11 +8,9 @@ $$S=\sum_{k=0}^{\infty}\frac{(-5)^{2k-3}}{4^{3\cdot k\cdot 2}}$$
 @formulas
 @rule Geometrische Reihe
 $$S=\sum_{k=0}^{\infty}a\cdot q^k=\frac{a}{1-q},\qquad |q|<1$$
-a ist das erste Glied, q der konstante Quotient. Für a ≠ 0 divergiert die Reihe bei |q| ≥ 1; bei a = 0 ist sie die Nullreihe.
-@rule Quotient zweier aufeinanderfolgender Glieder
+a ist das erste Glied, q der Faktor von einem Glied zum nächsten. Erst a und q finden, dann die Konvergenz prüfen und S berechnen.
+@rule Quotient
 $$q=\frac{a_{k+1}}{a_k}\quad(a_k\ne0)$$
-@rule Endliche Teilsumme
-$$S_N=a\frac{1-q^{N+1}}{1-q}\quad(q\ne1)$$
 @endformulas
 ### Was wollen wir herausfinden?
 Wir wollen wissen, ob die Reihe konvergiert und gegen welchen Wert sie konvergiert. Das heißt: Wenn wir unendlich viele Glieder addieren, gegen welche Zahl nähert sich die Summe an?
@@ -36,15 +34,13 @@ Das Ergebnis ist der Wert, dem sich die Summe immer weiter annähert, wenn wir i
 ### Aufgabenstellung
 $$S=\sum_{k=0}^{\infty}\frac{1}{(k+3)(k+5)}$$
 @formulas
-@rule Partialbruchzerlegung (zwei verschiedene lineare Faktoren)
+@rule Partialbruchzerlegung
 $$\frac{1}{(k+a)(k+b)}=\frac{A}{k+a}+\frac{B}{k+b}$$
-$$A=\frac1{b-a},\qquad B=-\frac1{b-a}\quad(a\ne b)$$
-Die Nenner dürfen nicht null sein. Die Koeffizienten werden durch Multiplikation mit dem gemeinsamen Nenner bestimmt.
-@rule Teleskopsumme (a, b positive ganze Zahlen, d = b − a > 0)
-$$\frac1{(k+a)(k+b)}=\frac1{b-a}\left(\frac1{k+a}-\frac1{k+b}\right)$$
-$$S_N=\frac1d\left(\sum_{j=a}^{b-1}\frac1j-\sum_{j=N+a+1}^{N+b}\frac1j\right),\quad N\ge d-1$$
-$$S=\lim_{N\to\infty}S_N=\frac1d\sum_{j=a}^{b-1}\frac1j$$
-Zuerst die d Anfangs- und die d Endglieder bestimmen. Die Endglieder gehen im Grenzwert gegen null.
+Mit dem gemeinsamen Nenner multiplizieren und A und B durch Einsetzen der passenden k-Werte bestimmen. Die Faktoren müssen verschieden sein.
+@rule Teleskopsumme
+$$d=b-a$$
+Bei positiven ganzen Zahlen b > a bleiben d Anfangsbrüche und d Endbrüche übrig, sofern genügend Glieder vorhanden sind. Die letzten d Indizes sind N−(d−1), …, N. Die Endbrüche gehen für N gegen unendlich gegen null.
+$$S=\lim_{N\to\infty}S_N$$
 @endformulas
 ### 1. Partialbruchzerlegung
 Wir haben im Nenner ein Produkt aus zwei Faktoren: $(k+3)$ und $(k+5)$. Wir schreiben den ursprünglichen Bruch als Summe zweier Brüche und suchen die unbekannten Koeffizienten $A$ und $B$.
@@ -96,10 +92,10 @@ $$\sum_{k=0}^{\infty}(k+1)\cdot k\cdot q^k$$
 @rule Quotientenkriterium
 $$\boxed{L=\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|}$$
 $$\begin{array}{ll}L<1&\text{absolut konvergent}\\ L>1&\text{divergent}\\ L=1&\text{keine Aussage möglich}\end{array}$$
-Voraussetzung: Die Quotienten sind für alle hinreichend großen k definiert und ihr Grenzwert existiert (auch +∞ ist als Divergenzfall möglich).
+L berechnen und in die Regel einsetzen. Die Quotienten müssen für hinreichend große k definiert sein.
 @rule Nullfolgenkriterium
 $$a_k\not\to0\ \Longrightarrow\ \sum_{k=0}^{\infty}a_k\text{ divergiert}$$
-Wenn L = 1, den Randfall separat untersuchen. Die Umkehrung des Nullfolgenkriteriums gilt nicht.
+Bei L = 1 die Randfälle separat prüfen. Gehen die Glieder gegen null, ist Konvergenz allein dadurch noch nicht bewiesen.
 @endformulas
 ### 1. Was wollen wir herausfinden?
 Wir wollen nicht den Wert der Summe berechnen, sondern herausfinden, für welche Werte von $q$ die Partialsummen einen endlichen Grenzwert besitzen. $q$ ist der unbekannte Parameter, $k$ läuft gegen unendlich.
@@ -140,10 +136,10 @@ $$\lim_{x\to0}\frac{x\cdot\sin(x)}{\cos(x)-1}$$
 @formulas
 @rule Regel von L'Hospital
 $$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}$$
-Nur bei 0/0 oder ∞/∞ unter den Voraussetzungen der Regel anwenden: Differenzierbarkeit in einer punktierten Umgebung, g′ dort ungleich null und existierender Grenzwert des Ableitungsquotienten (ggf. unendlich). Zähler und Nenner getrennt ableiten.
+Bei den unbestimmten Formen 0/0 oder ∞/∞ unter den Voraussetzungen der Regel Zähler und Nenner getrennt ableiten. Erneut einsetzen und bei Bedarf wiederholen.
 @rule Produktregel
 $$(uv)'=u'v+uv'$$
-@rule Wichtige Ableitungen für diese Aufgabe
+@rule Wichtige Ableitungen
 $$(x)'=1,\quad(c)'=0,\quad(\sin x)'=\cos x,\quad(\cos x)'=-\sin x$$
 @endformulas
 ### 1. Was ist das Ziel?
@@ -174,15 +170,13 @@ $$h(x)=\frac{x+1}{(x+3)(x-3)}$$
 @formulas
 @rule Allgemeine Taylor-Reihe an der Entwicklungsstelle 0
 $$\boxed{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}\cdot x^n}$$
-n-mal ableiten, Entwicklungsstelle einsetzen und durch n! teilen. Die Gleichheit mit f gilt dort, wo die Taylor-Reihe f tatsächlich darstellt.
-@rule Abkürzung über die geometrische Reihe
+n-mal ableiten, 0 einsetzen, durch n! teilen und mit x hoch n multiplizieren. Die Gleichheit gilt, wo die Taylor-Reihe die Funktion darstellt.
+@rule Geometrische Reihe rückwärts anwenden
 $$\frac1{1-q}=\sum_{n=0}^{\infty}q^n=1+q+q^2+q^3+\cdots,\quad |q|<1$$
-@rule Allgemeine Umformung für rationale Funktionen
-$$\frac{a(x)}{1-q(x)}=a(x)\sum_{n=0}^{\infty}q(x)^n,\quad |q(x)|<1$$
-a(x) als äußeren Faktor stehen lassen. q(x) durch Vergleich des Nenners mit 1−q identifizieren. Danach die Reihe entwickeln, ausmultiplizieren und das Muster erkennen.
-@rule Konvergenzbereich der geometrischen Reihe bestimmen
-$$|q(x)|<1$$
-Nach x auflösen und Randpunkte separat prüfen. Bei einer Potenzreihe um 0 beschreibt R den Abstand von 0 zu den Randpunkten des Konvergenzintervalls.
+Den Bruch in die Form a/(1−q) bringen. Den äußeren Faktor a zunächst stehen lassen. q erkennen, einsetzen, ausmultiplizieren und das Muster finden.
+@rule Konvergenzbedingung
+$$|q|<1$$
+Das zuvor identifizierte q einsetzen, nach x auflösen und die Randpunkte separat prüfen.
 @endformulas
 ### 1. Was will ich überhaupt berechnen?
 Ich will eine Funktion in eine unendliche Summe von Potenzen von x umwandeln. Das Ergebnis ist keine einzelne Zahl, sondern eine andere Darstellung derselben Funktion innerhalb des Konvergenzbereichs.

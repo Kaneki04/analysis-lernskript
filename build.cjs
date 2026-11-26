@@ -17,7 +17,23 @@ const f=n=>n===0?"<i>f</i>":n<4?"<i>f</i>"+ "′".repeat(n):"<i>f</i><sup>(4)</s
 const rows=Array.from({length:5},(_,n)=>`<tr><td><span class="visual-math">${f(n)}(<i>x</i>) = <i>e</i><sup><i>x</i></sup></span></td><td><span class="visual-math">${f(n)}(<span class="pair-5">0</span>) = <i>e</i><sup class="pair-5">0</sup></span></td><td><strong class="pattern-group keep">1</strong></td></tr>`).join("");
 return `<div class="study-visual taylor-derivatives"><div class="visual-heading">Warum steht im Zähler immer 1?</div><p class="visual-subtitle">Schritt 1: Ableitungen berechnen. Schritt 2: x = 0 einsetzen. Bei eˣ bleibt die Ableitung stets eˣ, und e⁰ = 1.</p><div class="visual-scroll"><table class="pattern-table" aria-label="Ableitungen von e hoch x und ihre Werte an der Stelle null"><thead><tr><th scope="col">Ableitung</th><th scope="col">0 einsetzen</th><th scope="col">Ergebnis</th></tr></thead><tbody>${rows}</tbody></table></div><div class="visual-legend"><span class="visual-key"><span class="key-dot pair-5"></span>Entwicklungsstelle 0</span><span class="visual-key"><span class="key-dot keep"></span>Wert für den Zähler</span></div></div>`;
 }
+function leastSquaresVisual(name){
+const math=(s)=>`<span class="visual-math">${s}</span>`;
+const pow=n=>n===0?"":n===1?"<i>t</i>":`<i>t</i><sup>${n}</sup>`;
+const frac=(den)=>`<span class="stack-fraction"><span>2</span><span>${den}</span></span>`;
+if(name==="least-squares-shift"){
+return `<div class="study-visual"><div class="visual-heading">Intervall verschieben</div><div class="visual-scroll"><table class="pattern-table"><thead><tr><th>Original x</th><th class="pair-6">−2</th><th class="keep">Neue Variable t</th></tr></thead><tbody>${[1,2,3].map(v=>`<tr><td><span class="pattern-group pair-5">${v}</span></td><td class="pair-6">${v} − 2</td><td><span class="pattern-group keep">${v-2}</span></td></tr>`).join("")}</tbody></table></div><p class="visual-subtitle">x ∈ [1,3] → t ∈ [−1,1]</p></div>`;
+}
+if(name==="least-squares-integrals"){
+return `<div class="study-visual"><div class="visual-heading">Meine Integraltabelle – einmal berechnen, immer wieder verwenden</div><div class="visual-scroll"><table class="pattern-table"><thead><tr><th scope="col">n</th>${Array.from({length:8},(_,n)=>`<th scope="col">${n}</th>`).join("")}</tr></thead><tbody><tr><th scope="row">Integral</th>${Array.from({length:8},(_,n)=>`<td><span class="pattern-group ${n%2?"tail":"keep"}">${n%2?"0":n===0?"2":frac(n+1)}</span></td>`).join("")}</tr></tbody></table></div><div class="visual-legend"><span class="visual-key"><span class="key-dot keep"></span>Gerade Potenzen: Wert bleibt</span><span class="visual-key"><span class="key-dot tail"></span>Ungerade Potenzen: Integral = 0</span></div></div>`;
+}
+const j=Number(name.slice("least-squares-".length));if(!Number.isInteger(j)||j<0||j>3)throw Error("Unknown least squares visual");
+const terms=[["",4],["8",3],["24",2],["32",1],["17",0],["A",0],["B",1],["C",2],["D",3]];
+const chips=terms.map(([co,n],i)=>{const exponent=n+j;const odd=exponent%2===1;return `<span class="pattern-group ${odd?"tail cancelled":"keep"}">${i===0?"":i>=5?"− ":"+ "}${co}${pow(exponent)}</span>`}).join("");
+return `<div class="study-visual"><div class="visual-heading">R(t) mit ${j===0?"1":"t"+(j===1?"":j===2?"²":"³")} multiplizieren</div><p class="visual-subtitle">Erst die Exponenten addieren, dann die ungeraden Potenzen streichen. Die durchgestrichenen Terme sind nicht als Funktionen null; ihre Integrale über [−1,1] sind null.</p><div class="least-squares-terms">${chips}</div><div class="visual-legend"><span class="visual-key"><span class="key-dot keep"></span>Gerade Potenzen → integrieren</span><span class="visual-key"><span class="key-dot tail"></span>Ungerade Potenzen → Integral = 0</span></div></div>`;
+}
 function studyVisual(name){
+if(name.startsWith('least-squares-'))return leastSquaresVisual(name);
 if(name==='taylor-derivatives')return taylorDerivatives();
 const frac=(d,sign="",cls="")=>`<span class="fraction-term ${cls}"><span class="term-sign">${sign}</span><span class="stack-fraction"><span>1</span><span>${d}</span></span></span>`;
 const key=(cls,label)=>`<span class="visual-key"><span class="key-dot ${cls}"></span>${label}</span>`;

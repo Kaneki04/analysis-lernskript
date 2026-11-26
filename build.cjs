@@ -12,7 +12,13 @@ const read=p=>fs.readFileSync(path.join(__dirname,p),'utf8');
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let errors=[],count=0;
 function math(tex,display=false){count++;const html=adaptor.outerHTML(doc.convert(tex,{display}));if(/data-mjx-error|data-mml-node="merror"/.test(html))errors.push(tex);return html;}
+function taylorDerivatives(){
+const f=n=>n===0?"<i>f</i>":n<4?"<i>f</i>"+ "′".repeat(n):"<i>f</i><sup>(4)</sup>";
+const rows=Array.from({length:5},(_,n)=>`<tr><td><span class="visual-math">${f(n)}(<i>x</i>) = <i>e</i><sup><i>x</i></sup></span></td><td><span class="visual-math">${f(n)}(<span class="pair-5">0</span>) = <i>e</i><sup class="pair-5">0</sup></span></td><td><strong class="pattern-group keep">1</strong></td></tr>`).join("");
+return `<div class="study-visual taylor-derivatives"><div class="visual-heading">Warum steht im Zähler immer 1?</div><p class="visual-subtitle">Schritt 1: Ableitungen berechnen. Schritt 2: x = 0 einsetzen. Bei eˣ bleibt die Ableitung stets eˣ, und e⁰ = 1.</p><div class="visual-scroll"><table class="pattern-table" aria-label="Ableitungen von e hoch x und ihre Werte an der Stelle null"><thead><tr><th scope="col">Ableitung</th><th scope="col">0 einsetzen</th><th scope="col">Ergebnis</th></tr></thead><tbody>${rows}</tbody></table></div><div class="visual-legend"><span class="visual-key"><span class="key-dot pair-5"></span>Entwicklungsstelle 0</span><span class="visual-key"><span class="key-dot keep"></span>Wert für den Zähler</span></div></div>`;
+}
 function studyVisual(name){
+if(name==='taylor-derivatives')return taylorDerivatives();
 const frac=(d,sign="",cls="")=>`<span class="fraction-term ${cls}"><span class="term-sign">${sign}</span><span class="stack-fraction"><span>1</span><span>${d}</span></span></span>`;
 const key=(cls,label)=>`<span class="visual-key"><span class="key-dot ${cls}"></span>${label}</span>`;
 if(name==="telescope"){

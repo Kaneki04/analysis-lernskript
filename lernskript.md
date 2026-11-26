@@ -186,6 +186,8 @@ $$\boxed{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}\cdot x^n}$$
 $f^{(n)}(0)$ bedeutet: n-mal ableiten und erst dann $x=0$ einsetzen. Bei $n=0$ nehme ich die ursprüngliche Funktion. $n!$ ist die Fakultät, und $0!=1$. Das $x^n$ am Ende bleibt stehen.
 ### Beispiel: Taylor-Reihe von eˣ
 Bei $f(x)=e^x$ sind alle Ableitungen wieder $e^x$. Wenn ich darin $x=0$ einsetze, erhalte ich immer $e^0=1$.
+@visual taylor-derivatives
+Erst ableiten, dann 0 einsetzen. Die grüne 1 ist in diesem Beispiel der Wert der Ableitung im Zähler der Taylor-Formel. Bei anderen Funktionen kann dieser Wert anders sein. Jetzt setzen wir die Ergebnisse in die Taylor-Formel ein.
 $$n=0:\quad\frac{f(0)}{0!}x^0=\frac11\cdot1=1$$
 $$n=1:\quad\frac{f'(0)}{1!}x=\frac11\cdot x=x$$
 $$n=2:\quad\frac{f''(0)}{2!}x^2=\frac{x^2}{2}$$

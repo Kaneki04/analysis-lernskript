@@ -295,8 +295,8 @@ $$t=x-2,\quad x=t+2,\quad dx=dt$$
 Wir verschieben das Intervall um 2 nach links, damit es symmetrisch um 0 liegt. Nur dadurch erhalten wir für dieses Beispiel das einfache Intervall von −1 bis 1. Bei anderen Intervalllängen führt das bloße Verschieben nicht zwingend zu diesen Grenzen.
 ### 3. p(x) durch P(t) ersetzen und vereinfachen
 Überall, wo x steht, setze ich t+2 ein.
-$$P(t)=(t+2)^4+1$$
-$$(t+2)^4=t^4+4\cdot2t^3+6\cdot4t^2+4\cdot8t+16$$
+$$P(t)={(t+2)}^4+1$$
+$${(t+2)}^4=t^4+4\cdot2t^3+6\cdot4t^2+4\cdot8t+16$$
 !$$P(t)=t^4+8t^3+24t^2+32t+17$$
 Das gesuchte Polynom schreibe ich jetzt mit t und den neuen unbekannten Koeffizienten A, B, C, D.
 $$Q(t)=A+Bt+Ct^2+Dt^3$$
@@ -374,13 +374,13 @@ $$5\cdot32+3D=184$$
 !$$Q(t)=\frac{592}{35}+32t+\frac{174}{7}t^2+8t^3$$
 ### 12. Von t zurück zu x wechseln
 Am Anfang haben wir t=x−2 gesetzt. Jetzt ersetze ich in Q(t) jedes t durch x−2, damit die Lösung wieder in der ursprünglichen Variablen x steht.
-!$$q(x)=\frac{592}{35}+32(x-2)+\frac{174}{7}(x-2)^2+8(x-2)^3$$
+!$$q(x)=\frac{592}{35}+32(x-2)+\frac{174}{7}{(x-2)}^2+8{(x-2)}^3$$
 Das ist bereits ein Polynom dritten Grades in x. Ausmultipliziert ergibt es die folgende gleichwertige Darstellung.
-$$(x-2)^2=x^2-4x+4$$
-$$(x-2)^3=x^3-6x^2+12x-8$$
+$${(x-2)}^2=x^2-4x+4$$
+$${(x-2)}^3=x^3-6x^2+12x-8$$
 $$32(x-2)=32x-64$$
-$$\frac{174}{7}(x-2)^2=\frac{174}{7}x^2-\frac{696}{7}x+\frac{696}{7}$$
-$$8(x-2)^3=8x^3-48x^2+96x-64$$
+$$\frac{174}{7}{(x-2)}^2=\frac{174}{7}x^2-\frac{696}{7}x+\frac{696}{7}$$
+$$8{(x-2)}^3=8x^3-48x^2+96x-64$$
 Gleichartige Potenzen zusammenfassen:
 $$x^3:\quad8$$
 $$x^2:\quad\frac{174}{7}-48=-\frac{162}{7}$$
